@@ -12,4 +12,17 @@ public class MyRestController {
         return "Hello World from MyRestController!";
     }
 
+    // expose "/name" endpoint
+    @GetMapping("/name")
+    public String getName(){
+        return "Mohammed Rahman";
+    }
+
+    // expose "/address" endpoint
+    @GetMapping("/address")
+    public String getAddress(){
+        return "New York, NY - 10017";
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.springboot.demo.myapp.rest;
 
 import com.example.springboot.demo.myapp.common.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,13 +13,13 @@ public class CarController {
 
     /**
     @Autowired
-    public CarController(Car myCar){ // constructor injection
+    public CarController(@Qualifier("ford") Car myCar){ // constructor injection
         this.myCar = myCar;
     }
      */
 
     @Autowired
-    public void setCar(Car myCar){ // setter injection
+    public void setCar(@Qualifier("toyota") Car myCar){ // setter injection
         this.myCar = myCar;
     }
 

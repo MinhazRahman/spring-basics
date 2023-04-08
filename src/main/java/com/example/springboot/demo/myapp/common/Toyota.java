@@ -1,5 +1,8 @@
 package com.example.springboot.demo.myapp.common;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Toyota implements Car{
     @Override
     public String getName() {

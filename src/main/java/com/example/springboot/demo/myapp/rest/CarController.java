@@ -10,13 +10,25 @@ public class CarController {
 
     Car myCar;
 
+    /**
     @Autowired
     public CarController(Car myCar){ // constructor injection
+        this.myCar = myCar;
+    }
+     */
+
+    @Autowired
+    public void setCar(Car myCar){ // setter injection
         this.myCar = myCar;
     }
 
     @GetMapping("/car/name")
     public String getName(){
         return myCar.getName();
+    }
+
+    @GetMapping("/car/model")
+    public String getModel(){
+        return myCar.getModel();
     }
 }

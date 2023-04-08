@@ -1,17 +1,14 @@
 package com.example.springboot.demo.myapp.common;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class Ford implements Car{
+public class Toyota implements Car{
     @Override
     public String getName() {
-        return "Ford";
+        return "Toyota";
     }
 
     @Override
     public String getModel() {
-        return "Ford - A4";
+        return "Toyota - A3";
     }
 
     @Override

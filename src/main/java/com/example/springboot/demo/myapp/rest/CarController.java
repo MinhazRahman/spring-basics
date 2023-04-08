@@ -12,7 +12,7 @@ public class CarController {
     Car myCar;
 
     @Autowired
-    public CarController(@Qualifier("ford") Car myCar){ // constructor injection
+    public CarController(@Qualifier("audi") Car myCar){ // constructor injection
         System.out.println("In the constructor: " + getClass().getSimpleName());
         this.myCar = myCar;
     }

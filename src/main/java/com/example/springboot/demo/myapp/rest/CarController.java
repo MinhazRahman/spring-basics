@@ -11,17 +11,18 @@ public class CarController {
 
     Car myCar;
 
-    /**
     @Autowired
     public CarController(@Qualifier("ford") Car myCar){ // constructor injection
+        System.out.println("In the constructor: " + getClass().getSimpleName());
         this.myCar = myCar;
     }
-     */
 
+    /**
     @Autowired
     public void setCar(@Qualifier("toyota") Car myCar){ // setter injection
         this.myCar = myCar;
     }
+    */
 
     @GetMapping("/car/name")
     public String getName(){

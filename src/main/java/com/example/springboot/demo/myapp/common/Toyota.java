@@ -4,6 +4,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Toyota implements Car{
+
+    public Toyota(){
+        System.out.println("In the constructor: " + getClass().getSimpleName());
+    }
+
     @Override
     public String getName() {
         return "Toyota";

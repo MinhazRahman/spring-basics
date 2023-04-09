@@ -42,4 +42,13 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         return customerList;
     }
+
+    @Override
+    public List<Customer> findByLastName(String lastName) {
+        TypedQuery<Customer> typedQuery = entityManager.createQuery("FROM Customer WHERE lastName=:lastName", Customer.class);
+        typedQuery.setParameter("lastName", lastName);
+        List<Customer> customerList = typedQuery.getResultList();
+
+        return customerList;
+    }
 }

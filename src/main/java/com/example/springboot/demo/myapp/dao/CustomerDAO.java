@@ -10,4 +10,6 @@ public interface CustomerDAO {
     Customer findById(Integer id);
 
     List<Customer> findAll();
+
+    List<Customer> findByLastName(String lastName);
 }

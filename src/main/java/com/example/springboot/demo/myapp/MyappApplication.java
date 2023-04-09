@@ -24,8 +24,27 @@ public class MyappApplication {
 			// System.out.println("Hello World");
 			// createCustomer(customerDAO);
 			// readCustomer(customerDAO);
-			readAllCustomers(customerDAO);
+			// readAllCustomers(customerDAO);
+			readCustomerByLastName(customerDAO);
 		};
+	}
+
+	private void readCustomerByLastName(CustomerDAO customerDAO) {
+		// create the customer object
+		System.out.println("Creating the customer object...");
+		Customer customer = new Customer("Jonny", "Doe", "jonny@example.com");
+
+		// save the customer object
+		System.out.println("Saving the customer object...");
+		customerDAO.save(customer);
+
+		// retrieve all the customers by last name
+		List<Customer>  customerList = customerDAO.findByLastName(customer.getLastName());
+
+		// display customers
+		for (Customer theCustomer: customerList){
+			System.out.println(theCustomer);
+		}
 	}
 
 	private void readAllCustomers(CustomerDAO customerDAO) {

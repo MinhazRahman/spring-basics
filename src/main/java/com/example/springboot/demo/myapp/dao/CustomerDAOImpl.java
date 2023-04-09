@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
     // define the entity manager field
@@ -29,5 +31,11 @@ public class CustomerDAOImpl implements CustomerDAO{
     public Customer findById(Integer id) {
         Customer customer = entityManager.find(Customer.class, id); // retrieve customer from the DB
         return customer;
+    }
+
+    @Override
+    public List<Customer> findAll() {
+
+        return null;
     }
 }

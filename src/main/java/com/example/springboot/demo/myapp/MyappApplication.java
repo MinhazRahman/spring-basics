@@ -26,8 +26,16 @@ public class MyappApplication {
 	}
 
 	private void readCustomer(CustomerDAO customerDAO) {
+		// create the customer object
+		System.out.println("Creating the customer object...");
+		Customer customer = new Customer("Jonny", "Doe", "jonny@example.com");
+
+		// save the customer object
+		System.out.println("Saving the customer object...");
+		customerDAO.save(customer);
+
 		// retrieve the customer object from the DB
-		Customer customer = customerDAO.findById(1);
+		Customer theCustomer = customerDAO.findById(customer.getId());
 
 		// display the customer
 		System.out.println(customer);

@@ -24,4 +24,10 @@ public class CustomerDAOImpl implements CustomerDAO{
     public void save(Customer customer) {
         entityManager.persist(customer);
     }
+
+    @Override
+    public Customer findById(Integer id) {
+        Customer customer = entityManager.find(Customer.class, id); // retrieve customer from the DB
+        return customer;
+    }
 }

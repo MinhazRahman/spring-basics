@@ -3,7 +3,9 @@ package com.example.springboot.demo.myapp.dao;
 import com.example.springboot.demo.myapp.entity.Customer;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.QTypeContributor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +37,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 
     @Override
     public List<Customer> findAll() {
+        TypedQuery<Customer> typedQuery = entityManager.createQuery("FROM Customer", Customer.class);
+        List<Customer> customerList = typedQuery.getResultList();
 
-        return null;
+        return customerList;
     }
 }

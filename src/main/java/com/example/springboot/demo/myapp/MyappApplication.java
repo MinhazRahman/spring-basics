@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class MyappApplication {
 
@@ -21,8 +23,19 @@ public class MyappApplication {
 		return runner ->{
 			// System.out.println("Hello World");
 			// createCustomer(customerDAO);
-			readCustomer(customerDAO);
+			// readCustomer(customerDAO);
+			readAllCustomers(customerDAO);
 		};
+	}
+
+	private void readAllCustomers(CustomerDAO customerDAO) {
+		// retrieve all the customers
+		List<Customer>  customerList = customerDAO.findAll();
+
+		// display customers
+		for (Customer customer: customerList){
+			System.out.println(customer);
+		}
 	}
 
 	private void readCustomer(CustomerDAO customerDAO) {

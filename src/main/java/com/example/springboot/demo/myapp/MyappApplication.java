@@ -22,8 +22,8 @@ public class MyappApplication {
 	public CommandLineRunner commandLineRunner(CustomerDAO customerDAO){ // inject customerDAO
 		return runner ->{
 			// System.out.println("Hello World");
-			 createCustomer(customerDAO);
-			// readCustomer(customerDAO);
+			 // createCustomer(customerDAO);
+			 readCustomer(customerDAO);
 			// readAllCustomers(customerDAO);
 			// readCustomerByLastName(customerDAO);
 			// updateCustomer(customerDAO);

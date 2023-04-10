@@ -22,13 +22,13 @@ public class MyappApplication {
 	public CommandLineRunner commandLineRunner(CustomerDAO customerDAO){ // inject customerDAO
 		return runner ->{
 			// System.out.println("Hello World");
-			// createCustomer(customerDAO);
+			 createCustomer(customerDAO);
 			// readCustomer(customerDAO);
 			// readAllCustomers(customerDAO);
 			// readCustomerByLastName(customerDAO);
 			// updateCustomer(customerDAO);
 			// deleteCustomer(customerDAO);
-			deleteAllCustomers(customerDAO);
+			// deleteAllCustomers(customerDAO);
 		};
 	}
 
@@ -110,7 +110,7 @@ public class MyappApplication {
 	private void createCustomer(CustomerDAO customerDAO) {
 		// create the customer object
 		System.out.println("Creating the customer object...");
-		Customer customer = new Customer("Jammy", "Doe", "jammy@example.com");
+		Customer customer = new Customer("Michael", "Joseph", "michael@example.com");
 
 		// save the customer object
 		System.out.println("Saving the customer object...");

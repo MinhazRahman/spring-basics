@@ -25,8 +25,25 @@ public class MyappApplication {
 			// createCustomer(customerDAO);
 			// readCustomer(customerDAO);
 			// readAllCustomers(customerDAO);
-			readCustomerByLastName(customerDAO);
+			// readCustomerByLastName(customerDAO);
+			updateCustomer(customerDAO);
 		};
+	}
+
+	private void updateCustomer(CustomerDAO customerDAO) {
+		// retrieve customer by id
+		int customerId = 1;
+		Customer customer = customerDAO.findById(customerId);
+
+		// change the last name
+		customer.setLastName("Cena");
+
+		// update the customer
+		customerDAO.update(customer);
+
+		// display the updated customer
+		customer = customerDAO.findById(customerId);
+		System.out.println(customer);
 	}
 
 	private void readCustomerByLastName(CustomerDAO customerDAO) {

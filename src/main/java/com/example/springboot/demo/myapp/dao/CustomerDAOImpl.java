@@ -51,4 +51,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         return customerList;
     }
+
+    @Override
+    @Transactional
+    public void update(Customer customer) {
+        entityManager.merge(customer);
+    }
 }

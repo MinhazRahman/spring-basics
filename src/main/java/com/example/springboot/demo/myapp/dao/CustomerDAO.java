@@ -12,4 +12,6 @@ public interface CustomerDAO {
     List<Customer> findAll();
 
     List<Customer> findByLastName(String lastName);
+
+    void update(Customer customer);
 }

@@ -5,6 +5,7 @@ import com.example.springboot.demo.myapp.entity.Customer;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,11 +33,20 @@ public class CustomerRestController {
     }
 
     /**
-     * define endpoint for "/students"
-     * Returns a list of students
+     * define endpoint for "/customers"
+     * Returns a list of customers
      * */
-    @GetMapping("/students")
-    public List<Customer> getStudents(){
+    @GetMapping("/customers")
+    public List<Customer> getCustomers(){
         return customers;
+    }
+
+    /**
+     * Define endpoint for "/customer/{customerId}"
+     * Returns the customer
+     * */
+    @GetMapping("/customer/{customerId}")
+    public Customer getCustomer(@PathVariable int customerId){
+        return customerDAO.findById(customerId);
     }
 }

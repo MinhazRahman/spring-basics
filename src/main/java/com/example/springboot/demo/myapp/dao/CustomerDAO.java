@@ -14,4 +14,8 @@ public interface CustomerDAO {
     List<Customer> findByLastName(String lastName);
 
     void update(Customer customer);
+
+    void delete(Integer id);
+
+    int deleteAll();
 }

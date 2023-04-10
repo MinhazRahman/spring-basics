@@ -57,4 +57,21 @@ public class CustomerDAOImpl implements CustomerDAO{
     public void update(Customer customer) {
         entityManager.merge(customer);
     }
+
+    @Override
+    @Transactional
+    public void delete(Integer id) {
+        // retrieve the customer
+        Customer customer = entityManager.find(Customer.class, id);
+        // delete the customer
+        entityManager.remove(customer);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        int numRowsDeleted = entityManager.createQuery("DELETE FROM Customer").executeUpdate();
+
+        return numRowsDeleted;
+    }
 }

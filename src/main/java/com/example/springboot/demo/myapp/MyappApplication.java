@@ -26,8 +26,25 @@ public class MyappApplication {
 			// readCustomer(customerDAO);
 			// readAllCustomers(customerDAO);
 			// readCustomerByLastName(customerDAO);
-			updateCustomer(customerDAO);
+			// updateCustomer(customerDAO);
+			// deleteCustomer(customerDAO);
+			deleteAllCustomers(customerDAO);
 		};
+	}
+
+	private void deleteAllCustomers(CustomerDAO customerDAO) {
+		int numRowsDeleted = customerDAO.deleteAll();
+		System.out.println("Number of customers deleted: " + numRowsDeleted);
+	}
+
+	private void deleteCustomer(CustomerDAO customerDAO) {
+		// retrieve customer by id
+		int customerId = 4;
+		Customer customer = customerDAO.findById(customerId);
+		System.out.println("Deleted: " + customer);
+
+		// delete the customer
+		customerDAO.delete(customerId);
 	}
 
 	private void updateCustomer(CustomerDAO customerDAO) {

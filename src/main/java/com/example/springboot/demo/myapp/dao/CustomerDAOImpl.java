@@ -60,7 +60,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
     @Override
     @Transactional
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         // retrieve the customer
         Customer customer = entityManager.find(Customer.class, id);
         // delete the customer

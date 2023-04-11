@@ -4,10 +4,7 @@ import com.example.springboot.demo.myapp.dao.CustomerDAO;
 import com.example.springboot.demo.myapp.entity.Customer;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,8 +42,22 @@ public class CustomerRestController {
      * Define endpoint for "/customer/{customerId}"
      * Returns the customer
      * */
-    @GetMapping("/customer/{customerId}")
+    @GetMapping("/customers/{customerId}")
     public Customer getCustomer(@PathVariable int customerId){
         return customerDAO.findById(customerId);
+    }
+
+    /**
+     * Define endpoint for "/customers/{customerId}"
+     * Deletes the customer from the database
+     * */
+    @DeleteMapping("/customers/{customerId}")
+    public String deleteCustomer(@PathVariable int customerId){
+        Customer customer = customerDAO.findById(customerId);
+        if (customer == null){
+            throw new RuntimeException("Customer id not found - " + customerId);
+        }
+        customerDAO.deleteById(customerId);
+        return "Deleted customer with id -" + customerId;
     }
 }

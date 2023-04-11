@@ -5,7 +5,6 @@ import com.example.springboot.demo.myapp.entity.Customer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
@@ -23,11 +22,11 @@ public class MyappApplication {
 		return runner ->{
 			// System.out.println("Hello World");
 			 // createCustomer(customerDAO);
-			 readCustomer(customerDAO);
-			// readAllCustomers(customerDAO);
+			 // readCustomer(customerDAO);
+			 readAllCustomers(customerDAO);
 			// readCustomerByLastName(customerDAO);
 			// updateCustomer(customerDAO);
-			// deleteCustomer(customerDAO);
+			 // deleteCustomer(customerDAO);
 			// deleteAllCustomers(customerDAO);
 		};
 	}
@@ -39,12 +38,12 @@ public class MyappApplication {
 
 	private void deleteCustomer(CustomerDAO customerDAO) {
 		// retrieve customer by id
-		int customerId = 4;
+		int customerId = 12;
 		Customer customer = customerDAO.findById(customerId);
 		System.out.println("Deleted: " + customer);
 
 		// delete the customer
-		customerDAO.delete(customerId);
+		customerDAO.deleteById(customerId);
 	}
 
 	private void updateCustomer(CustomerDAO customerDAO) {

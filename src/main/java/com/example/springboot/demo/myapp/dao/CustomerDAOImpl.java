@@ -24,7 +24,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 
     // implement the save method
     @Override
-    @Transactional
     public Customer save(Customer customer) {
 
         // save the Customer, if id == 0, then save/insert otherwise update
@@ -57,13 +56,12 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    @Transactional
     public void update(Customer customer) {
+
         entityManager.merge(customer);
     }
 
     @Override
-    @Transactional
     public void deleteById(Integer id) {
         // retrieve the customer
         Customer customer = entityManager.find(Customer.class, id);
@@ -72,7 +70,6 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    @Transactional
     public int deleteAll() {
         int numRowsDeleted = entityManager.createQuery("DELETE FROM Customer").executeUpdate();
 

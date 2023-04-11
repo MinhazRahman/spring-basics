@@ -1,7 +1,7 @@
 package com.example.springboot.demo.myapp.rest;
 
-import com.example.springboot.demo.myapp.dao.CustomerDAO;
 import com.example.springboot.demo.myapp.entity.Customer;
+import com.example.springboot.demo.myapp.service.CustomerService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +13,20 @@ import java.util.List;
 public class CustomerRestController {
 
     // Define CustomerDAO field
-    CustomerDAO customerDAO;
-    List<Customer> customers;
+    private CustomerService customerService;
+    private List<Customer> customers;
 
     // define @PostConstruct annotation to load customer data, only once.
     @PostConstruct
     public void loadData(){ // load data only once
         // retrieve all the customers
-        customers = customerDAO.findAll();
+        customers = customerService.findAll();
     }
 
     // Inject CustomerDAO into the CustomerRestController using constructor injection
     @Autowired
-    public CustomerRestController(CustomerDAO customerDAO){
-        this.customerDAO = customerDAO;
+    public CustomerRestController(CustomerService customerService){
+        this.customerService = customerService;
     }
 
     /**
@@ -44,7 +44,7 @@ public class CustomerRestController {
      * */
     @GetMapping("/customers/{customerId}")
     public Customer getCustomer(@PathVariable int customerId){
-        Customer customer = customerDAO.findById(customerId);
+        Customer customer = customerService.findById(customerId);
 
         if (customer == null){
             throw new RuntimeException("Customer not found with id - " + customerId);
@@ -62,7 +62,7 @@ public class CustomerRestController {
         // this is to force a save of the item - instead of update
         customer.setId(0);
         // save the Customer, if id == 0, then save/insert otherwise update
-        Customer dbCustomer = customerDAO.save(customer);
+        Customer dbCustomer = customerService.save(customer);
         // return the saved customer
         return dbCustomer;
     }
@@ -73,7 +73,7 @@ public class CustomerRestController {
      * */
     public Customer updateCustomer(@RequestBody Customer customer){
         // save the Customer, if id == 0, then save/insert otherwise update
-        Customer dbCustomer = customerDAO.save(customer);
+        Customer dbCustomer = customerService.save(customer);
 
         // return the updated customer
         return dbCustomer;
@@ -85,11 +85,11 @@ public class CustomerRestController {
      * */
     @DeleteMapping("/customers/{customerId}")
     public String deleteCustomer(@PathVariable int customerId){
-        Customer customer = customerDAO.findById(customerId);
+        Customer customer = customerService.findById(customerId);
         if (customer == null){
             throw new RuntimeException("Customer id not found - " + customerId);
         }
-        customerDAO.deleteById(customerId);
+        customerService.deleteById(customerId);
         return "Deleted customer with id -" + customerId;
     }
 }

@@ -25,8 +25,12 @@ public class CustomerDAOImpl implements CustomerDAO{
     // implement the save method
     @Override
     @Transactional
-    public void save(Customer customer) {
-        entityManager.persist(customer);
+    public Customer save(Customer customer) {
+
+        // save the Customer, if id == 0, then save/insert otherwise update
+        Customer dbCustomer = entityManager.merge(customer);
+
+        return dbCustomer;
     }
 
     @Override

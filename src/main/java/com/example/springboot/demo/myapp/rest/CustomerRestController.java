@@ -30,7 +30,7 @@ public class CustomerRestController {
     }
 
     /**
-     * define endpoint for "/customers"
+     * define endpoint for GET "/customers"
      * Returns a list of customers
      * */
     @GetMapping("/customers")
@@ -39,12 +39,44 @@ public class CustomerRestController {
     }
 
     /**
-     * Define endpoint for "/customer/{customerId}"
+     * Define endpoint for GET "/customer/{customerId}"
      * Returns the customer
      * */
     @GetMapping("/customers/{customerId}")
     public Customer getCustomer(@PathVariable int customerId){
-        return customerDAO.findById(customerId);
+        Customer customer = customerDAO.findById(customerId);
+
+        if (customer == null){
+            throw new RuntimeException("Customer not found with id - " + customerId);
+        }
+        return customer;
+    }
+
+    /**
+     * Define endpoint for POST "/customers"
+     * ADD the customer into the database
+     * */
+    @PostMapping("/customers")
+    public Customer addCustomer(@RequestBody Customer customer){
+        // just in case we pass an id with Json - set the id to 0
+        // this is to force a save of the item - instead of update
+        customer.setId(0);
+        // save the Customer, if id == 0, then save/insert otherwise update
+        Customer dbCustomer = customerDAO.save(customer);
+        // return the saved customer
+        return dbCustomer;
+    }
+
+    /**
+     * Define endpoint for PUT "/customers"
+     * ADD the customer into the database
+     * */
+    public Customer updateCustomer(@RequestBody Customer customer){
+        // save the Customer, if id == 0, then save/insert otherwise update
+        Customer dbCustomer = customerDAO.save(customer);
+
+        // return the updated customer
+        return dbCustomer;
     }
 
     /**
